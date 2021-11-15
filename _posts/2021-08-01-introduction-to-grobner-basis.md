@@ -5,9 +5,9 @@ categories: [algebraic-geometry]
 date: 2021-08-01
 math: true
 image: 
-  src: /assets/f4_algorithm.jpeg
-  width: 1000
-  height: 50
+  src: /assets/algebraic-curve.png
+  width: 300
+#   height: 50
   alt: image not found
 ---
 $$
