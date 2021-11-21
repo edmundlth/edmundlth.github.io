@@ -7,12 +7,9 @@ date: 2021-06-01
 math: true
 ---
 
-Introduction {#sec:introduction}
-================
+# Introduction
 
-Let's first set the context. Imagine we are given a data generating
-process $$q(x)$$ where we can ask for $$N \in { {\mathbb N}}$$ samples [^1], $$D_N = \{ X_1, \dots, X_N \}$$. Our goal is to *learn* a distribution $$p(x)$$ from which we can make inferences about
-the data generating process itself.
+Let's first set the context. Imagine we are given a data generating process $$q(x)$$ where we can ask for $$N \in { {\mathbb N}}$$ samples [^1], $$D_N = \{ X_1, \dots, X_N \}$$. Our goal is to *learn* a distribution $$p(x)$$ from which we can make inferences about the data generating process itself.
 
 -   **Deterministic data**
     If $$q$$ generates the result of "$$1 + 1$$", we can set $$p(x_1) = 1$$
@@ -130,136 +127,79 @@ threshold (RLCT), $$\lambda$$ and its order $$\theta$$.
     TODO: there are various square roots involved in this that I don't
     really understand \...
 
-**Toy Model: Coin Flip**
-========================
 
-Following a long tradition of first example in statistical pedagogy, we
-will investigate coin flips: a single Bernoulli random variable
-$$\left\{H, T\right\} \ni x \sim Bernoulli(\omega)$$ parametrised by a
-single variable
-$$\omega \in [0, 1] = \Omega \subset { {\mathbb R}}$$. In this
-case, we have $$\begin{aligned}
-    p(x| \omega) &= \begin{cases}
-        \omega & x = H\\
-        1 - \omega & x = T
-    \end{cases}\\
-    q(x) &= p(x| \omega_0)\\    
-    K(\omega) &= \omega_0 \log \omega_0 + (1 - \omega_0) \log (1 - \omega_0) - \omega_0 \log \omega - (1 - \omega_0) \log (1 - \omega)\\
-    K_N(\omega) &= \hat{\omega}_{MLE} \log \frac{\omega_0}{\omega} + (1 - \hat{\omega}_{MLE}) \log \frac{1 - \omega_0}{1 - \omega}, \quad \hat{\omega}_{MLE} = \frac{\# H}{N} \\
-    I(\omega) &= \frac{1}{\omega( 1 - \omega)} > 0 \quad \forall \omega \in (0, 1)\end{aligned}$$
-where the last expression is the (positive definite) Fisher information
-matrix[^9]. This is clearly a regular model. Assuming uniform prior
-$$\varphi = 1$$, the Laplace integral can be computed exactly as
-$$\begin{aligned}
-    L(n) 
-    &= \int_0^1 \exp\left(-nK(\omega)\right)d\omega \\
-    &= \left(\omega_0^{\omega_0}(1 - \omega_0)^{1 - \omega_0}\right)^{-n} \int_0^1 \omega^{n \omega_0}(1 - \omega)^{n(1 - \omega_0)}d\omega\\
-    &= C(\omega_0)^{-n}B(n \omega_0 + 1, n(1 - \omega_0) + 1)\end{aligned}$$
-where $$B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x + y)}$$ is the beta
-function[^10]. If the truth is that the coin is fair[^11], using
-Stirling's approximation for $$\Gamma$$, we have $$\begin{aligned}
-    L(n) 
-    &\sim \frac{1}{8\sqrt{\pi}} \left(\frac{n}{2} + 1\right)^{-\frac{1}{2}}\end{aligned}$$
-which tell us that the RLCT $$= 1/2$$ as expected for a regular model. The
-posterior and Bayesian predictive distribution is given by[^12]
-$$\begin{aligned}
-    p(\omega | D_N) &= \frac{\omega^{\# H} ( 1 - \omega)^{N - \# H}}{B(\# H + 1, N - \# H + 1)} \sim \text{Beta distribution}\\
-    p(x| D_N) &= \frac{1}{B(\# H + 1, N - \# H + 1)}\begin{cases}
-        B(\# H + 2, N - \# H + 1) & x = H\\
-        B(\# H + 1, N - \# H + 2) & x = T. 
-    \end{cases}\end{aligned}$$ These can be simplified into binomial
-coefficients. Finding the analytic continuation for the zeta
-function[^13] $$\begin{aligned}
-    \zeta(z) = \int_0^1 \left(-\log 2 - \frac{1}{2}\log \omega(1 - \omega)\right)^z d\omega\end{aligned}$$
-is not trivial even for the $$\omega_0 = 1/2$$ case. Though this analysis
-generalised to any finite number of discrete variables[^14], analytic
-expression of quantities of interest are both hard to write down and
-hard to compute[^15]. I suppose a lesson here is that Bayesian
-statistics is HARD.
+# RLCT for Regular Models
 
-**RLCT for Regular Models** {#sec:regular models}
-===========================
+The RLCT of a regular realisable model is given by 
 
-The RLCT of a regular realisable model is given by
-$$\lambda = \frac{d}{2}$$ and $$\theta = 1$$.
+$$\lambda = \frac{d}{2} \quad \theta = 1.$$
 
 We shall use the Laplace integral characterisation of RLCT. We want to
-show that
-$$Z^0_n = \int_\Omega \exp\left(-nK(\omega)\right) \varphi(\omega) d{\omega} \sim C n^{-\frac{d}{2}}$$
-for some positive constant $$C$$ as $$n \to \infty$$.\
-Since the model is realisable and identifiable, it has unique minimum at
-$$\omega^* \in \mathrm{supp}(\varphi)$$. Taylor expansion of $$K$$ centered
-around $$\omega^*$$ up to order 2 gives $$\begin{aligned}
-        K(\omega) 
-        &= K(\omega^*) + \nabla K(\omega^*) \cdot (\omega - \omega^*) + \frac{1}{2} (\omega - \omega^*)^T \nabla^2K(\omega^*)(\omega - \omega^*)  + O(\left|\, \omega - \omega^* \,\right|^3)
-    \end{aligned}$$ where $$\nabla^2K(\omega^*)$$ is the Hessian of $$K$$ at
-$$\omega^*$$. That $$\omega^*$$ realises the true model and is a local
-minimum gives us $$K(\omega^*) = 0$$ and $$\nabla K(\omega^*) =0$$, reducing
-the above to $$\begin{aligned}
-        K(\omega) &= \frac{1}{2} (\omega - \omega^*)^T \nabla^2K(\omega^*)(\omega - \omega^*)  + O(\left|\, \omega - \omega^* \,\right|^3). 
-    \end{aligned}$$
+show that 
 
-Substituting the above into the integral, we get, in the limit as
-$$n \to \infty$$ $$\begin{aligned}
-        Z^0_n 
-        &\sim \int_\Omega \exp\left(-\frac{n}{2} (\omega - \omega^*)^T \nabla^2K(\omega^*)(\omega - \omega^*) \right) \varphi(\omega) d{\omega} 
-    \end{aligned}$$ which we recognise as a Gaussian integral with
-precision matrix $$n \nabla^2K(\omega^*)$$ which is positive definite by
-assumption. Therefore, we conclude that $$\begin{aligned}
-        Z^0_n 
-        \sim \varphi(\omega^*)\sqrt{\frac{(2\pi)^d}{\det\left(n \nabla^2K(\omega^*)\right)}} 
-        = \varphi(\omega^*)\sqrt{\frac{(2\pi)^d}{\det\left(\nabla^2K(\omega^*)\right)}} n^{-\frac{d}{2}}.
-    \end{aligned}$$
+$$Z^0_n = \int_\Omega \exp\left(-nK(w)\right) \varphi(w) d{w} \sim C n^{-\frac{d}{2}}$$
 
-We shall use the characterisation that for any positive $$a \neq 1$$,
-$$\lambda = \lim_{t \to 0^+} \log_a \frac{V(at)}{V(t)}$$ where $$V$$ is the
-volume function $$\begin{aligned}
-        V(t) = \int_{K(\omega) \leq t} \varphi(\omega) d\omega. 
-    \end{aligned}$$ By regularity assumption, we have that $$\omega^*$$ is
-a non-degenerate critical point of $$K$$ and hence by Morse lemma, there
-is a local chart $$x(\omega) = (x_i(\omega))_{i = 1, \dots, d}$$ in a
-small enough neighbourhood of $$\omega^*$$ such that
-$$K(\omega) = \cancelto{0}{K(\omega^*)} + \sum_i x_i(\omega)^2$$.
-Therefore, for small enough $$t > 0$$, $$\begin{aligned}
+for some positive constant $$C$$ as $$n \to \infty$$. Since the model is realisable and identifiable, it has unique minimum at $$w^* \in \mathrm{supp}(\varphi)$$. Taylor expansion of $$K$$ centered around $$w^*$$ up to order 2 gives 
+
+$$
+\begin{aligned}
+        K(w) 
+        &= K(w^*) + \nabla K(w^*) \cdot (w - w^*) + \frac{1}{2} (w - w^*)^T \nabla^2K(w^*)(w - w^*)  + O(\left|\, w - w^* \,\right|^3) 
+\end{aligned}
+$$ 
+
+where $\nabla^2K(w^*)$ is the Hessian of $K$ at $w^*$. That $w^*$ realises the true model and is a local minimum gives us $K(w^*) = 0$ and $\nabla K(w^*) =0$, reducing the above to 
+
+$$
+\begin{aligned}
+        K(w) &= \frac{1}{2} (w - w^*)^T \nabla^2K(w^*)(w - w^*)  + O(\left|\, w - w^* \,\right|^3). 
+\end{aligned}
+$$
+
+Substituting the above into the integral, we get, in the limit as $$n \to \infty$$ 
+
+$$
+\begin{aligned}
+        Z^0_n 
+        &\sim \int_\Omega \exp\left(-\frac{n}{2} (w - w^*)^T \nabla^2K(w^*)(w - w^*) \right) \varphi(w) d{w} 
+\end{aligned}
+$$
+
+which we recognise as a Gaussian integral with precision matrix $$n \nabla^2K(w^*)$$ which is positive definite by assumption. Therefore, we conclude that 
+
+$$
+\begin{aligned}
+        Z^0_n 
+        \sim \varphi(w^*)\sqrt{\frac{(2\pi)^d}{\det\left(n \nabla^2K(w^*)\right)}} 
+        = \varphi(w^*)\sqrt{\frac{(2\pi)^d}{\det\left(\nabla^2K(w^*)\right)}} n^{-\frac{d}{2}}.
+\end{aligned}
+$$
+
+We shall use the characterisation that for any positive $$a \neq 1$$, $$\lambda = \lim_{t \to 0^+} \log_a \frac{V(at)}{V(t)}$$ where $$V$$ is the volume function 
+
+$$
+\begin{aligned}
+        V(t) = \int_{K(w) \leq t} \varphi(w) dw. 
+\end{aligned}
+$$ 
+
+By regularity assumption, we have that $$w^*$$ is a non-degenerate critical point of $$K$$ and hence by Morse lemma, there is a local chart $$x(w) = (x_i(w))_{i = 1, \dots, d}$$ in a small enough neighbourhood of $$w^*$$ such that $$K(w) = \cancelto{0}{K(w^*)} + \sum_i x_i(w)^2$$. Therefore, for small enough $$t > 0$$, 
+
+$$
+\begin{aligned}
         V(t) = \int_{\sum_i x_i^2 \leq t} \varphi(x) dx
-    \end{aligned}$$ which is proportional to the volume of a
-$$d$$-dimensional ball with radius $$\sqrt{t}$$, i.e.
-$$V(t) \propto t^{d}$$.[^16] Finally, $$\begin{aligned}
+\end{aligned}
+$$ 
+
+which is proportional to the volume of a $$d$$-dimensional ball with radius $$\sqrt{t}$$, i.e.
+$$V(t) \propto t^{d}$$.[^16] Finally, 
+
+$$
+\begin{aligned}
         \lambda = \lim_{t \to 0^+} \log_a \frac{(at)^{d/2}}{t^{d/2}} = \frac{d}{2}. 
-    \end{aligned}$$
+\end{aligned}
+$$
 
-**Some Singular Models** {#sec:simple singular models}
-========================
-
-Normal Mixtures
----------------
-
-$$tanh$$ Perceptron with One Hidden Layer
----------------------------------------
-
-$$\lambda = \frac{\floor{\sqrt{H}}^2 + \floor{\sqrt{H}} + H}{4\floor{\sqrt{H}} + 2}$$
-
-Regularly Parametrised Models
------------------------------
-
-**Topics and Known Difficulties**
-=================================
-
-Characterisations of RLCT
--------------------------
-
-We should give a proof of the equivalent definitions / characterisations
-of RLCT. That would involve proof that various statement is independent
-of charts / generators etc..
-
-Blow up
--------
-
-Realisability
--------------
-
-From Analytic to Algebraic
---------------------------
 
 [^1]: Throughout, we assume that the process generates i.i.d. samples.
     In particular, $$X_i \sim q$$ for all $$i$$, with $$q$$ unchanging as we
