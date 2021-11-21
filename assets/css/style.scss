@@ -66,23 +66,6 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
     }
 }
 
-#toc-wrapper {
-    border-left: 1px solid rgba(158, 158, 158, 0.17);
-    position: -webkit-sticky;
-    position: static;
-    top: 4rem;
-    transition: top 0.2s ease-in-out;
-    animation: fade-up 0.8s;
-  
-    &.topbar-down {
-      top: 6rem;
-    }
-  
-    > span {
-      @include panel-label;
-    }
-  }
-
 
 
 /* Sidenotes, margin notes, figures, captions */

@@ -39,14 +39,14 @@ $$X = \V\brac{I} = \V\brac{\abrac{f_1, f_2, \dots}}$$
 
 If we wish to do computation with varieties and their associated ideals, it would be nice to be able to do the following:
 
-  - **Reduce to finite description**<span class=sidenote> some text $$\sum_{i = 1}^\infty \frac{1}{i^2}$$ a lot longer text and stuff that might overflow </span>
+  - **Reduce to finite description**<label for="sn-demo" class="margin-toggle sidenote-number"></label> <span class=sidenote> some text $$\sum_{i = 1}^\infty \frac{1}{i^2}$$ a lot longer text and stuff that might overflow </span>
 Outside of toy examples, the initial description of the variety probably have infinite number of generators $f_i$. It would be nice if we can reduce to a cleverly selected *finite* set of generators $g_i$ that encode the same ideal. This also begs the question: given another set of generators $$\brac{g_i}$$, how can we tell with finite computation if they describe the same ideal?
 
-  - **Check ideal membership**  <span class=sidenote> some text $$\sum_{i = 1}^\infty \frac{1}{i^2}$$ </span>
+  - **Check ideal membership**<label for="sn-demo" class="margin-toggle sidenote-number"></label>  <span class=sidenote> some text $$\sum_{i = 1}^\infty \frac{1}{i^2}$$ </span>
 Given another polynomial $p \in k[x]$, can we check that $p$ is in fact in the ideal $I$? Well, we need to check that $p$ is a finite
 combination of the generators, $p = \sum_{i} q_i f_i$ with polynomial coefficients $q_i \in k[x]$. How do we find those?
 
-  - **Identify variety from ideal**  <span class=sidenote> some text $$\sum_{i = 1}^\infty \frac{1}{i^2}$$ </span>
+  - **Identify variety from ideal**<label for="sn-demo" class="margin-toggle sidenote-number"></label>  <span class=sidenote> some text $$\sum_{i = 1}^\infty \frac{1}{i^2}$$ </span>
 Given the ideal, $$I = \abrac{f_i}$$ how do we actually solve the system of polynomial equations, $f_1(x) = f_2(x) = \dots = 0$, to obtain the points in the variety.
 
   - **Identify ideal from variety**  
