@@ -15,6 +15,19 @@ image:
 Short description of the post. 
 
 
+- [Abstract](#abstract)
+- [Introduction](#introduction)
+- [Special Cases](#special-cases)
+  - [<a name='Degree1butMultivariable'></a>Degree $=1$ but Multivariable](#degree-1-but-multivariable)
+  - [<a name='SingleVariablebutDegree1'></a>Single Variable but Degree $>1$](#single-variable-but-degree-1)
+- [**Generalising Long Division**](#generalising-long-division)
+- [**Leading Monomial Hold Center Stage**](#leading-monomial-hold-center-stage)
+  - [Monomially Generated Ideals](#monomially-generated-ideals)
+- [**Gröbner Basis**](#gröbner-basis)
+- [**Buchberger Algorithm for Constructing Gröbner Basis**](#buchberger-algorithm-for-constructing-gröbner-basis)
+- [Equivalent Characterisations of Gröbner Basis](#equivalent-characterisations-of-gröbner-basis)
+- [Footnotes](#footnotes)
+
 # Introduction
 When an algebraic variety occurs in the wild, it is frequently given by the common vanishing set of a collection of polynomials. That is, we have a possibly infinite set of polynomials $\set{f_1(x), f_2(x), \dots} \subset k[x_1, \dots, x_d]$[^1], and our variety $X$ is given by 
 
@@ -26,7 +39,7 @@ $$X = \V\brac{I} = \V\brac{\abrac{f_1, f_2, \dots}}$$
 
 If we wish to do computation with varieties and their associated ideals, it would be nice to be able to do the following:
 
-  - **Reduce to finite description**  <span class=sidenote> some text $$\sum_{i = 1}^\infty \frac{1}{i^2}$$ a lot longer text and stuff that might overflow </span>
+  - **Reduce to finite description**<span class=sidenote> some text $$\sum_{i = 1}^\infty \frac{1}{i^2}$$ a lot longer text and stuff that might overflow </span>
 Outside of toy examples, the initial description of the variety probably have infinite number of generators $f_i$. It would be nice if we can reduce to a cleverly selected *finite* set of generators $g_i$ that encode the same ideal. This also begs the question: given another set of generators $$\brac{g_i}$$, how can we tell with finite computation if they describe the same ideal?
 
   - **Check ideal membership**  <span class=sidenote> some text $$\sum_{i = 1}^\infty \frac{1}{i^2}$$ </span>
@@ -54,7 +67,7 @@ It turns out that the solution to the above problems for special cases correspon
 As we shall see, algorithms for the special cases above fails in the general case in specific ways and fixing them give rise to Grobner basis. 
 
 
-## Degree $=1$ but Multivariable
+## <a name='Degree1butMultivariable'></a>Degree $=1$ but Multivariable
 
 Here, we are given $n$ *linear* polynomials[^3] in $k[x_1, x_2, \dots, x_d]$ 
 
@@ -84,7 +97,7 @@ $$
 _Using gaussian elimination to solve the special case of varieties defined by polynomials of degree 1_
 
 
-## Single Variable but Degree $>1$
+## <a name='SingleVariablebutDegree1'></a>Single Variable but Degree $>1$
 In this case, we have $n$ single variable polynomials in $k[x]$, each having arbitrary degree
 
 $$
