@@ -17,7 +17,7 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 
   &:only-child {
     position: -webkit-sticky; /* Safari */
-    position: sticky;
+    position: static;
   }
 
   &.topbar-down {
@@ -66,6 +66,25 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
     }
 }
 
+#toc-wrapper {
+    border-left: 1px solid rgba(158, 158, 158, 0.17);
+    position: -webkit-sticky;
+    position: static;
+    top: 4rem;
+    transition: top 0.2s ease-in-out;
+    animation: fade-up 0.8s;
+  
+    &.topbar-down {
+      top: 6rem;
+    }
+  
+    > span {
+      @include panel-label;
+    }
+  }
+
+
+
 /* Sidenotes, margin notes, figures, captions */
 img {
     max-width: 100%;
@@ -108,7 +127,7 @@ body {
 }
 
 .sidenote:before {
-    counter-increment: sidenote-counter;
+    // counter-increment: sidenote-counter;     
     content: counter(sidenote-counter) " ";
     font-size: 1rem;
     top: -0.5rem;
@@ -158,130 +177,130 @@ h3 > code {
     font-size: 1rem;
 }
 
-// pre > code {
-//     font-size: 0.9rem;
-//     width: 52.5%;
-//     margin-left: 2.5%;
-//     overflow-x: auto;
-//     display: block;
-// }
+pre > code {
+    font-size: 0.9rem;
+    width: 52.5%;
+    margin-left: 2.5%;
+    overflow-x: auto;
+    display: block;
+}
 
-// pre.fullwidth > code {
-//     width: 90%;
-// }
+pre.fullwidth > code {
+    width: 90%;
+}
 
-// .fullwidth {
-//     max-width: 90%;
-//     clear:both;
-// }
+.fullwidth {
+    max-width: 90%;
+    clear:both;
+}
 
-// span.newthought {
-//     font-variant: small-caps;
-//     font-size: 1.2em;
-// }
+span.newthought {
+    font-variant: small-caps;
+    font-size: 1.2em;
+}
 
-// input.margin-toggle {
-//     display: none;
-// }
+input.margin-toggle {
+    display: none;
+}
 
-// label.sidenote-number {
-//     display: inline;
-// }
+label.sidenote-number {
+    display: inline;
+}
 
-// label.margin-toggle:not(.sidenote-number) {
-//     display: none;
-// }
+label.margin-toggle:not(.sidenote-number) {
+    display: none;
+}
 
-// .iframe-wrapper {
-//     position: relative;
-//     padding-bottom: 56.25%; /* 16:9 */
-//     padding-top: 25px;
-//     height: 0;
-// }
+.iframe-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+}
 
-// .iframe-wrapper iframe {
-//     position: absolute;
-//     top: 0;
-//     left: 0;
-//     width: 100%;
-//     height: 100%;
-// }
+.iframe-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
 
-// @media (max-width: 760px) {
-//     body {
-//         width: 84%;
-//         padding-left: 8%;
-//         padding-right: 8%;
-//     }
+@media (max-width: 760px) {
+    body {
+        width: 84%;
+        padding-left: 8%;
+        padding-right: 8%;
+    }
 
-//     hr,
-//     section > p,
-//     section > footer,
-//     section > table {
-//         width: 100%;
-//     }
+    hr,
+    section > p,
+    section > footer,
+    section > table {
+        width: 100%;
+    }
 
-//     pre > code {
-//         width: 97%;
-//     }
+    pre > code {
+        width: 97%;
+    }
 
-//     section > dl,
-//     section > ol,
-//     section > ul {
-//         width: 90%;
-//     }
+    section > dl,
+    section > ol,
+    section > ul {
+        width: 90%;
+    }
 
-//     figure {
-//         max-width: 90%;
-//     }
+    figure {
+        max-width: 90%;
+    }
 
-//     figcaption,
-//     figure.fullwidth figcaption {
-//         margin-right: 0%;
-//         max-width: none;
-//     }
+    figcaption,
+    figure.fullwidth figcaption {
+        margin-right: 0%;
+        max-width: none;
+    }
 
-//     blockquote {
-//         margin-left: 1.5em;
-//         margin-right: 0em;
-//     }
+    blockquote {
+        margin-left: 1.5em;
+        margin-right: 0em;
+    }
 
-//     blockquote p,
-//     blockquote footer {
-//         width: 100%;
-//     }
+    blockquote p,
+    blockquote footer {
+        width: 100%;
+    }
 
-//     label.margin-toggle:not(.sidenote-number) {
-//         display: inline;
-//     }
+    label.margin-toggle:not(.sidenote-number) {
+        display: inline;
+    }
 
-//     .sidenote,
-//     .marginnote {
-//         display: none;
-//     }
+    .sidenote,
+    .marginnote {
+        display: none;
+    }
 
-//     .margin-toggle:checked + .sidenote,
-//     .margin-toggle:checked + .marginnote {
-//         display: block;
-//         float: left;
-//         left: 1rem;
-//         clear: both;
-//         width: 95%;
-//         margin: 1rem 2.5%;
-//         vertical-align: baseline;
-//         position: relative;
-//     }
+    .margin-toggle:checked + .sidenote,
+    .margin-toggle:checked + .marginnote {
+        display: block;
+        float: left;
+        left: 1rem;
+        clear: both;
+        width: 95%;
+        margin: 1rem 2.5%;
+        vertical-align: baseline;
+        position: relative;
+    }
 
-//     label {
-//         cursor: pointer;
-//     }
+    label {
+        cursor: pointer;
+    }
 
-//     div.table-wrapper,
-//     table {
-//         width: 85%;
-//     }
+    div.table-wrapper,
+    table {
+        width: 85%;
+    }
 
-//     img {
-//         width: 100%;
-//     }
-// }
+    img {
+        width: 100%;
+    }
+}
