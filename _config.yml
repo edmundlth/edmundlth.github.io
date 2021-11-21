@@ -82,7 +82,7 @@ img_cdn: 'https://d3awt3adt4koyi.cloudfront.net/images'
 avatar: assets/avatar.png
 
 # boolean type, the global switch for ToC in posts.
-toc: true
+toc: false
 
 disqus:
   comments: false  # boolean type, the global switch for posts comments.
