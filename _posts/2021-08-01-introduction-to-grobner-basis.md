@@ -148,7 +148,7 @@ $$p(x) = q(x)f(x) + r(x)$$
 with $r(x)$ having lower degree than the divisor $f$. 
 
 To generalise this to multivariate polynomials, we seek to generalise the above in two ways: 
-  1. we allow multivariate polynomials $p \in k[x_1, \dots, xd]$ and 
+  1. we allow multivariate polynomials $p \in k[x_1, \dots, x_d]$ and 
   2. we are allow to divide by a finite set of polynomials $f_1, \dots f_n$. Meaning want to find a set of quotients $q_1, \dots, q_n$ and a possibly zero polynomial remainder $r$ such that 
   \begin{aligned}
     p = q_1 f_1 + \dots + q_n f_n + r

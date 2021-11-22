@@ -17,10 +17,7 @@ $(function() {
             snInput.setAttribute("id", `snid${_sidenoteCounter}`);
 
             sidenote.before(snLabel, snInput)
-            
-            // sidenote.before(
-            //     `<label for=\"snid${_sidenoteCounter}\" class=\"margin-toggle sidenote-number\"></label><input type=\"button\" class=\"margin-toggle\" id=\"snid${_sidenoteCounter}\"/>`
-            // );
+
             _sidenoteCounter = _sidenoteCounter + 1;
 	});
   });
