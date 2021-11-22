@@ -8,10 +8,29 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 
 @import "{{ site.theme }}";
 
+/* mathjax theorem */
+.theorem {
+    display: block;
+    font-style: italic;
+}
+
+.theorem:before {
+    content: "Theorem. ";
+    font-weight: bold;
+    font-style: normal;
+}
+
+.theorem[text]:before {
+    content: "Theorem (" attr(text) ") ";
+}
+
+
 mjx-container {
     overflow-x: scroll;
 }
 
+
+/* panel stuff */
 .access {
   top: 2rem;
   transition: top 0.2s ease-in-out;
@@ -135,31 +154,31 @@ body {
 //     }
 // }
 
-h1 {
-    font-weight: 400;
-    margin-top: 4rem;
-    margin-bottom: 1.5rem;
-    font-size: 3.2rem;
-    line-height: 1;
-}
+// h1 {
+//     font-weight: 400;
+//     margin-top: 4rem;
+//     margin-bottom: 1.5rem;
+//     font-size: 3.2rem;
+//     line-height: 1;
+// }
 
-h2 {
-    font-style: italic;
-    font-weight: 400;
-    margin-top: 2.1rem;
-    margin-bottom: 1.4rem;
-    font-size: 2.2rem;
-    line-height: 1;
-}
+// h2 {
+//     font-style: italic;
+//     font-weight: 400;
+//     margin-top: 2.1rem;
+//     margin-bottom: 1.4rem;
+//     font-size: 2.2rem;
+//     line-height: 1;
+// }
 
-h3 {
-    font-style: italic;
-    font-weight: 400;
-    font-size: 1.7rem;
-    margin-top: 2rem;
-    margin-bottom: 1.4rem;
-    line-height: 1;
-}
+// h3 {
+//     font-style: italic;
+//     font-weight: 400;
+//     font-size: 1.7rem;
+//     margin-top: 2rem;
+//     margin-bottom: 1.4rem;
+//     line-height: 1;
+// }
 
 hr {
     display: block;
