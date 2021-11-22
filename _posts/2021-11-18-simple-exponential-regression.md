@@ -6,7 +6,7 @@ description:
 date: 2021-11-18
 math: true
 image: 
-  src: /2021-11-18/
+  src: /2021-11-18/rlct-calculation.jpg
   width: 300
 #   height: 50
   alt: image not found

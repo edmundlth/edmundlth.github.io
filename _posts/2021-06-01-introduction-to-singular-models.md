@@ -5,6 +5,11 @@ categories: [singular-learning-theory]
 description: 
 date: 2021-06-01
 math: true
+image: 
+  src: /2021-08-01/algebraic-curve.png
+  width: 300
+#   height: 50
+  alt: image not found
 ---
 
 # Introduction
@@ -16,9 +21,7 @@ Let's first set the context. Imagine we are given a data generating process $q(x
     \"student\" would judiciously ask for more informative examples from
     a \"teacher\" process.</span>
 , $D_N = \{ X_1, \dots, X_N \}$. Our goal is to *learn* a distribution $p(x)$ from which we can make inferences about the data generating process itself. In other words, the task of a statistical learning machine is to discover structures and properties $q(x)$ from training examples $D_N$.
-
-
-<!--- 
+ 
 Some examples:
 -   **Deterministic data:** 
     If $q$ generates the result of "$1 + 1$", we can set $p(x_1) = 1$ where $x_1 = 2$ is the first "measurement" or request we made to the data generating process. Here the learning process recover everything we wish to know about $q$ just from the first data point, i.e. $p = q$. As such, there is no reason to deviate from this learning process. 
@@ -35,9 +38,8 @@ Some examples:
 -   **AI agents**
 
 -   etc [^2]
---->
+-
 
-<!--- 
 In general, we instantiate a large space of *hypothesis*,
 
 $$\Delta = \left\{p = p(x|w) \, \, : \,w \in W\right\}$$
@@ -58,8 +60,7 @@ We will investigate the properties of learning machine of this form. Properties 
 -   Data efficiency. Compute efficiency. Behaviour in overparametrised
     regime. Scaling laws. Double descent.
 
--   Training behaviour. Stochastic noise. --->
-
+-   Training behaviour. Stochastic noise. 
 
 
 
@@ -67,7 +68,8 @@ We will investigate the properties of learning machine of this form. Properties 
 For a given statistical model $(p(x \mid w), q(x), \varphi(w))$, the following are equivalent definitions for its real log canonical threshold (RLCT), $\lambda$ and its order $\theta$.
 
 1.  **Largest pole of zeta function of $$K$$**\
-    Define the zeta function of $K$ as[^3]:
+    Define the zeta function of $K$ as<span class=sidenote>$$\zeta$$ analytically continues to a meromorphic function with poles on the negative real axis.</span>:
+
     $$
     \begin{aligned}
         & \zeta: \C \to \C
@@ -78,7 +80,7 @@ For a given statistical model $(p(x \mid w), q(x), \varphi(w))$, the following a
     The RLCT $\lambda$ is the largest pole of $\zeta$ and $\theta$ the order of the pole at $\lambda$.
 
 2.  **Convergence rate of Laplace integral of $K$**\
-    $(\lambda, \theta)$ governs the asymptotic behaviour as $n \to \infty$ of the Laplace integral[^4]: 
+    $(\lambda, \theta)$ governs the asymptotic behaviour as $n \to \infty$ of the Laplace integral<span class=sidenote>which is the deterministic version of the (normalised) evidence $$Z^0_n = \int_W \exp\left(-nK_N(w)\right)\varphi(w) dw$$. Note that the limiting variable $$n$$ is different from the number of training samples $$N$$. This is one place where inverse temperature $$\beta$$ can come in: set $$n = \beta k$$.</span>: 
     
     $$
     \begin{aligned}
@@ -89,7 +91,9 @@ For a given statistical model $(p(x \mid w), q(x), \varphi(w))$, the following a
     for some positive real constant $C$.
 
 3.  **Convergence rate of free energy**\
-    Taking the negative logarithm of the previous asymptotic expression gives[^5] 
+    Taking the negative logarithm of the previous asymptotic expression gives<span class=sidenote>the stochastic version translate as
+    $$F^0_n = \lambda \log n - (\theta -1) \log \log n +$$ stochastic
+    process of constant order.</span> 
     
     $$
     \begin{aligned}
@@ -114,7 +118,7 @@ For a given statistical model $(p(x \mid w), q(x), \varphi(w))$, the following a
     \end{aligned}
     $$ 
     
-    for some positive real constant $C$.[^6]
+    for some positive real constant $C$.
 
 5.  **Volume codimension $W_0$** 
 
@@ -265,25 +269,3 @@ $$
 
 [^8]: This deep result shows that
     $$(\lambda, \theta) \in \Q \times \Z$$.
-
-[^9]: admittedly not much of a matrix in 1-D.
-
-[^10]: even in this extremely simple case, we still need special
-    functions to express quantities of interest.
-
-[^11]: $$w_0 = 1/2$$ and $$C(w_0) = 2$$ in this case.
-
-[^12]: the form of the posterior shows that Beta and Bernoulli
-    distributions forms a conjugate pair.
-
-[^13]: I haven't been able to do it. The integral is singular near the
-    integration terminals. This makes the evaluation using resolution of
-    singularity seems magical to me.
-
-[^14]: Beta distribution becomes Dirichlet distribution, binomial
-    becomes multinomial etc\...
-
-[^15]: not to mention issues with numerical stability\...
-
-[^16]: Volume of $$d$$-dimensional ball with radius $$r$$ is given by
-    $$\frac{\pi^{\frac{d}{2}}}{\Gamma(\frac{n}{2} + 1)}r^d$$.
