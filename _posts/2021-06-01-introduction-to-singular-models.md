@@ -8,10 +8,18 @@ math: true
 ---
 
 # Introduction
-Let's first set the context. Imagine we are given a data generating process $q(x)$ where we can ask for $N \in \N$ samples[^1], $D_N = \{ X_1, \dots, X_N \}$. Our goal is to *learn* a distribution $p(x)$ from which we can make inferences about the data generating process itself. 
+Let's first set the context. Imagine we are given a data generating process $q(x)$ where we can ask for $N \in \N$ samples
+<span class=sidenote>Throughout, we assume that the process generates i.i.d. samples.
+    In particular, $$X_i \sim q$$ for all $$i$$, with $$q$$ unchanging as we
+    ask for more samples. However, we note that this is a
+    simplification: one would imagine that an (artificial) intelligent
+    \"student\" would judiciously ask for more informative examples from
+    a \"teacher\" process.</span>
+, $D_N = \{ X_1, \dots, X_N \}$. Our goal is to *learn* a distribution $p(x)$ from which we can make inferences about the data generating process itself. In other words, the task of a statistical learning machine is to discover structures and properties $q(x)$ from training examples $D_N$.
 
+
+<!--- 
 Some examples:
-
 -   **Deterministic data:** 
     If $q$ generates the result of "$1 + 1$", we can set $p(x_1) = 1$ where $x_1 = 2$ is the first "measurement" or request we made to the data generating process. Here the learning process recover everything we wish to know about $q$ just from the first data point, i.e. $p = q$. As such, there is no reason to deviate from this learning process. 
 
@@ -27,12 +35,14 @@ Some examples:
 -   **AI agents**
 
 -   etc [^2]
+--->
 
+<!--- 
 In general, we instantiate a large space of *hypothesis*,
 
 $$\Delta = \left\{p = p(x|w) \, \, : \,w \in W\right\}$$
 
-parametrised by $w \in W \subset \R^d$ equipped with a prior $\varphi(w)$ and cast the learning process as an *optimisation procedure* that finds the best hypothesis that explains the observed samples. One way to define "best" is to select $p$ that minimises the *Kullback-Leibler divergence* between $q$ and $p$, i.e.choose $p(x) = p(x \st \hat{w})$ such that $\hat{w}$ minimises 
+parametrised by $w \in W \subset \R^d$ equipped with a prior $\varphi(w)$ and cast the learning process as an *optimisation procedure* that finds the best hypothesis that explains the observed samples. One way to define "best" is to select $p$ that minimises the *Kullback-Leibler divergence* between $q$ and $p$, i.e.choose $p(x) = p(x \mid \hat{w})$ such that $\hat{w}$ minimises 
 
 $$
 \begin{aligned}
@@ -48,7 +58,8 @@ We will investigate the properties of learning machine of this form. Properties 
 -   Data efficiency. Compute efficiency. Behaviour in overparametrised
     regime. Scaling laws. Double descent.
 
--   Training behaviour. Stochastic noise.
+-   Training behaviour. Stochastic noise. --->
+
 
 
 
