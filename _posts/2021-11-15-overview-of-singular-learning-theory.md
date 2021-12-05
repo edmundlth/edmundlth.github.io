@@ -225,4 +225,4 @@ For a given statistical model $(p(x\|\omega), q(x), \varphi(\omega))$, the follo
         \lambda = \inf_{\omega \in W_0} \min_{1 \leq j \leq d}\frac{h_j + 1}{2k_j}
     $$
 
-    and $\theta$ is given by the number of times the above minimum is achieved. <span class=sidenote>This deep result shows that $(\lambda, \theta) \in \Q \times \Z$. </span> 
+    and $\theta$ is given by the number of times the above minimum is achieved. <span sidenote>This deep result shows that $(\lambda, \theta) \in \Q \times \Z$. </span> 

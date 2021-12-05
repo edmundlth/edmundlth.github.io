@@ -30,7 +30,7 @@ $$
 \end{aligned}    
 $$
 
-where the last expression is the (positive definite) Fisher information matrix<span class=sidenote>admittedly not much of a matrix in 1-D.</span>. This is clearly a regular model. Assuming uniform prior $\varphi = 1$, the Laplace integral can be computed exactly as
+where the last expression is the (positive definite) Fisher information matrix<span sidenote>admittedly not much of a matrix in 1-D.</span>. This is clearly a regular model. Assuming uniform prior $\varphi = 1$, the Laplace integral can be computed exactly as
 
 $$
 \begin{aligned}
@@ -41,7 +41,7 @@ $$
 \end{aligned}
 $$
 
-where $B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x + y)}$ is the beta function<span class=sidenote>even in this extremely simple case, we still need special functions to express quantities of interest.</span>. If the truth is that the coin is fair<span class=sidenote>$$w_0 = 1/2$$ and $$C(w_0) = 2$$ in this case.</span>, using Stirling's approximation for $$\Gamma$$, we have 
+where $B(x,y) = \frac{\Gamma(x)\Gamma(y)}{\Gamma(x + y)}$ is the beta function<span sidenote>even in this extremely simple case, we still need special functions to express quantities of interest.</span>. If the truth is that the coin is fair<span sidenote>$$w_0 = 1/2$$ and $$C(w_0) = 2$$ in this case.</span>, using Stirling's approximation for $$\Gamma$$, we have 
 
 $$
 \begin{aligned}
@@ -50,7 +50,7 @@ $$
 \end{aligned}
 $$
 
-which tell us that the RLCT $$= 1/2$$ as expected for a regular model. The posterior and Bayesian predictive distribution is given by<span class=sidenote>the form of the posterior shows that Beta and Bernoulli distributions forms a conjugate pair.</span>
+which tell us that the RLCT $$= 1/2$$ as expected for a regular model. The posterior and Bayesian predictive distribution is given by<span sidenote>the form of the posterior shows that Beta and Bernoulli distributions forms a conjugate pair.</span>
 
 $$
 \begin{aligned}
@@ -62,7 +62,7 @@ $$
 \end{aligned}
 $$ 
 
-These can be simplified into binomial coefficients. Finding the analytic continuation for the zeta function<span class=sidenote>I haven't been able to do it. The integral is singular near the integration terminals. This makes the evaluation using resolution of singularity seems magical to me.</span>
+These can be simplified into binomial coefficients. Finding the analytic continuation for the zeta function<span sidenote>I haven't been able to do it. The integral is singular near the integration terminals. This makes the evaluation using resolution of singularity seems magical to me.</span>
 
 $$
 \begin{aligned}
@@ -70,7 +70,7 @@ $$
 \end{aligned}
 $$
 
-is not trivial even for the $$w_0 = 1/2$$ case. Though this analysis generalised to any finite number of discrete variables<span class=sidenote>Beta distribution becomes Dirichlet distribution, binomial becomes multinomial etc\...</span>, analytic expression of quantities of interest are both hard to write down and hard to compute<span class=sidenote>not to mention issues with numerical stability...</span>. I suppose a lesson here is that Bayesian
+is not trivial even for the $$w_0 = 1/2$$ case. Though this analysis generalised to any finite number of discrete variables<span sidenote>Beta distribution becomes Dirichlet distribution, binomial becomes multinomial etc\...</span>, analytic expression of quantities of interest are both hard to write down and hard to compute<span sidenote>not to mention issues with numerical stability...</span>. I suppose a lesson here is that Bayesian
 statistics is HARD.
 
 
