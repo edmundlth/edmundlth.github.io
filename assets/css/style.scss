@@ -9,20 +9,26 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 @import "{{ site.theme }}";
 
 /* math environments like definitions, theorems, propositions etc... */
-.theorem {
+.theorem,
+.def,
+.proposition,
+.lemma {
     display: block;
-    font-style: italic;
+    margin: 1.5rem;
+    padding: 1.5rem;
+    border-style: ridge;
+    border-radius: 0.8rem;
 }
 
-.theorem:before {
-    content: "Theorem. ";
-    font-weight: bold;
-    font-style: normal;
-}
+// .theorem:before {
+//     content: "Theorem. ";
+//     font-weight: bold;
+//     font-style: normal;
+// }
 
-.theorem[text]:before {
-    content: "Theorem (" attr(text) ") ";
-}
+// .theorem[text]:before {
+//     content: "Theorem (" attr(text) ") ";
+// }
 
 // Allow for scrolling in the x-direction when mathjax rendering overflow the screen
 mjx-container {
