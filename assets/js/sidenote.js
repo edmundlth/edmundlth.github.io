@@ -5,7 +5,7 @@
 
 $(function() {
     let _sidenoteCounter = 0
-    document.querySelectorAll("span.sidenote").forEach(
+    document.querySelectorAll("span[sidenote]").forEach(
         sidenote => {
             let snLabel = document.createElement("label");
             snLabel.setAttribute("for", `snid${_sidenoteCounter}`);
