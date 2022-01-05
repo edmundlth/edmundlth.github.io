@@ -8,6 +8,15 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 
 @import "{{ site.theme }}";
 
+/* definition word style */
+span[def] {
+    font-weight: bold;
+    font-style: oblique;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: large;
+    color: cadetblue;
+}
+
 /* Dropdown section in markdown using <detail> element */
 details {
     display: block;
@@ -19,22 +28,21 @@ details {
 
 
 /* math environments like definitions, theorems, propositions etc... */
-.theorem,
-.def,
-.proposition,
-.lemma {
+.def {
     display: block;
     margin: 1.5rem;
     padding: 1.5rem;
     border-style: ridge;
     border-radius: 0.8rem;
+    border-width: 0.1rem;
 }
 
-// .theorem:before {
-//     content: "Theorem. ";
-//     font-weight: bold;
-//     font-style: normal;
-// }
+.def:before {
+    content: "Definition. ";
+    font-weight: bold;
+    font-style: normal;
+    font-size: large;
+}
 
 // .theorem[text]:before {
 //     content: "Theorem (" attr(text) ") ";
@@ -241,6 +249,7 @@ a:link::-moz-selection {
 img {
     max-width: 100%;
 }
+
 
 span[sidenote],
 .marginnote {
