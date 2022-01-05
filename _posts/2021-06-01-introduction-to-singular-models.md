@@ -14,7 +14,7 @@ image:
 
 # Introduction
 Let's first set the context. Imagine we are given a data generating process $q(x)$ where we can ask for $N \in \N$ samples
-<span class=sidenote>Throughout, we assume that the process generates i.i.d. samples.
+<span sidenote>Throughout, we assume that the process generates i.i.d. samples.
     In particular, $$X_i \sim q$$ for all $$i$$, with $$q$$ unchanging as we
     ask for more samples. However, we note that this is a
     simplification: one would imagine that an (artificial) intelligent
@@ -68,7 +68,7 @@ We will investigate the properties of learning machine of this form. Properties 
 For a given statistical model $(p(x \mid w), q(x), \varphi(w))$, the following are equivalent definitions for its real log canonical threshold (RLCT), $\lambda$ and its order $\theta$.
 
 1.  **Largest pole of zeta function of $$K$$**\
-    Define the zeta function of $K$ as<span class=sidenote>$$\zeta$$ analytically continues to a meromorphic function with poles on the negative real axis.</span>:
+    Define the zeta function of $K$ as<span sidenote>$$\zeta$$ analytically continues to a meromorphic function with poles on the negative real axis.</span>:
 
     $$
     \begin{aligned}
@@ -80,7 +80,7 @@ For a given statistical model $(p(x \mid w), q(x), \varphi(w))$, the following a
     The RLCT $\lambda$ is the largest pole of $\zeta$ and $\theta$ the order of the pole at $\lambda$.
 
 2.  **Convergence rate of Laplace integral of $K$**\
-    $(\lambda, \theta)$ governs the asymptotic behaviour as $n \to \infty$ of the Laplace integral<span class=sidenote>which is the deterministic version of the (normalised) evidence $$Z^0_n = \int_W \exp\left(-nK_N(w)\right)\varphi(w) dw$$. Note that the limiting variable $$n$$ is different from the number of training samples $$N$$. This is one place where inverse temperature $$\beta$$ can come in: set $$n = \beta k$$.</span>: 
+    $(\lambda, \theta)$ governs the asymptotic behaviour as $n \to \infty$ of the Laplace integral<span sidenote>which is the deterministic version of the (normalised) evidence $$Z^0_n = \int_W \exp\left(-nK_N(w)\right)\varphi(w) dw$$. Note that the limiting variable $$n$$ is different from the number of training samples $$N$$. This is one place where inverse temperature $$\beta$$ can come in: set $$n = \beta k$$.</span>: 
     
     $$
     \begin{aligned}
@@ -91,7 +91,7 @@ For a given statistical model $(p(x \mid w), q(x), \varphi(w))$, the following a
     for some positive real constant $C$.
 
 3.  **Convergence rate of free energy**\
-    Taking the negative logarithm of the previous asymptotic expression gives<span class=sidenote>the stochastic version translate as
+    Taking the negative logarithm of the previous asymptotic expression gives<span sidenote>the stochastic version translate as
     $$F^0_n = \lambda \log n - (\theta -1) \log \log n +$$ stochastic
     process of constant order.</span> 
     
