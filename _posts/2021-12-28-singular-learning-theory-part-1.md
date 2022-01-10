@@ -6,7 +6,7 @@ description:
 date: 2021-12-28
 math: true
 image: 
-  src: http://watanabe-www.math.dis.titech.ac.jp/users/swatanab/resolution.jpg
+  src: /2021-12-28/
   width: 500
 #   height: 50
   alt: image not found
@@ -17,7 +17,7 @@ This is intended as the first of a series of articles going through core texts f
 The target audience I have in mind is anyone familiar with undergraduate level mathematics and is interested in theoretical / mathematical aspect of statistical learning and AI. That being said, the nature of the subject is such that it draws upon tools and concepts from a wide array of mathematical disciplines, spanning algebra to analysis. Some, like probability and statistics, are crucial in the sense that they are the objects of study. Some, like manifold theory, are only required to make sure that the mathematical objects we manipulate are well defined and cover a sufficient generality for the theory to be useful. Others, like algebraic geometry and Schwartz distribution theory, exports crucial theorems that we shall use to prove and understand the central results of SLT. Yet others, like statistical mechanics, are topics where we might find unexpected connections and possible cross-pollination. We shall introduce these topics in their own time when they come up naturally when we explore SLT. Our modest aim regarding these prerequisites is to understand them with sufficient depth to understand the proofs of various results in SLT and to at least understand their significance <span sidenote> like why they are needed and what happen when we can't borrow from them. Of course each of them are profound fields of study in their own right, and if time and energy permit, we shall delve beyond strictly necessary to see the wonder they contain.</span> 
 
 # What do we aspire to study?
-Let us now set up the statistical objects that shall be our main concern for a long while. Before making definitions and carving out our own domain, let's list a few informal ways we think and talk about our field of study <span sidenote> If nothing else, it will help with triangulating what we aspire to study, where the definitions and tools we shall develop are helpful and where there are not.  </span>.
+Before making definitions and carving out our own domain, let's list a few informal ways we think and talk about our field of study <span sidenote> If nothing else, it will help with triangulating what we aspire to study, where the definitions and tools we shall develop are helpful and where there are not.  </span>.
  - We are studying systems that can learn from examples. 
  - We are studying algorithms or physical devices that perceive the world and learn its patterns. 
  - We are studying ways to reason and make decision with imperfect information and in the presence of randomness. 
