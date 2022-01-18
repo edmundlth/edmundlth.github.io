@@ -8,6 +8,22 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 
 @import "{{ site.theme }}";
 
+/* iframe */
+iframe {
+    width: 100%;
+    height: 65rem;
+}
+
+
+/* indented block paragraph */
+p.block {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+}
+
 /* definition word style */
 span[def] {
     font-weight: bold;
@@ -230,64 +246,26 @@ p.subtitle {
     line-height: 1;
 }
 
-/* Chapter Epigraphs */
-div.epigraph {
-    margin: 5em 0;
+/* Epigraph */
+div.epi {
+    margin-top: 3rem; 
 }
 
-div.epigraph > blockquote {
-    margin-top: 3em;
-    margin-bottom: 3em;
-}
-
-div.epigraph > blockquote,
-div.epigraph > blockquote > p {
-    font-style: italic;
-}
-
-div.epigraph > blockquote > footer {
-    font-style: normal;
-}
-
-div.epigraph > blockquote > footer > cite {
-    font-style: italic;
-}
-/* end chapter epigraphs styles */
-
-blockquote {
-    font-size: 1.4rem;
-}
-
-blockquote p {
+div.epi > blockquote {
     width: 55%;
-    margin-right: 40px;
-}
-
-blockquote footer {
-    width: 55%;
-    font-size: 1.1rem;
+    font-size: 1rem;
     text-align: right;
 }
 
-section > p,
-section > footer,
-section > table {
-    width: 55%;
+div.epi > blockquote > cite {
+    display: block;
+    // width: 55%;
+    font-size: 0.8rem;
+    text-align: right;
 }
 
-/* 50 + 5 == 55, to be the same width as paragraph */
-section > dl,
-section > ol,
-section > ul {
-    width: 50%;
-    -webkit-padding-start: 5%;
-}
 
-dt:not(:first-child),
-li:not(:first-child) {
-    margin-top: 0.25rem;
-}
-
+/* figure */
 figure {
     padding: 0;
     border: 0;
