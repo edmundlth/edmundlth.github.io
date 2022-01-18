@@ -1,12 +1,12 @@
 ---
-title: A Simple Statistical Inference Example - Coin Flip
+title: Statistical Learning Theory Via A Coin Flipping Demon 
 tags: [singular-learning-theory, machine-learning, statistics]
-categories: [singular-learning-theory-lecture-series]
+categories: [singular-learning-theory, singular-learning-theory-lecture-series]
 description: 
 date: 2022-01-13
 math: true
 image: 
-  src: /2022-01-13/coin-flipping-demon-model2.jpg
+  src: /2022-01-13/coin-flipping-demon-model1.jpg
   width: 100%
 #   height: 50
   alt: image not found
@@ -51,7 +51,6 @@ In this post, a simple statistical inference task, that of a modeling a coin fli
   - [So how did we do?](#so-how-did-we-do)
 - [A Broader Theory of MLE and Fisher Information](#a-broader-theory-of-mle-and-fisher-information)
 - [Role of Statistical Learning Theory](#role-of-statistical-learning-theory)
-- [Conclusion](#conclusion)
 
 
 # The Situation, The Dataset 
@@ -99,7 +98,9 @@ Let $h$ denote the number of heads in the dataset $D_N$ and $t = N - h$ the numb
 
 
 <p class=block>
-  <b>Model 2. </b> But the demon could be more ... demonic. Every time he does a flip, he could've been choosing one of two coins at random from a box, only one of which is a fair coin. We can introduce another parameter $s \in [0,1]$ for representing the probability that the fair coin is chosen and $w \in [0, 1]$ represent the bias - probability of landing heads - for the other coin. We have now a two dimensional<span sidenote>but still compact</span> paramter space $(s, w) \in [0, 1]^2$. The hypothesis at each parameter is given by
+  <b>Model 2. </b> 
+  <img src="/2022-01-13/coin-flipping-demon-model2.jpg" alt="Randomly choosing being a fair and bias coin before every coin toss.">
+  But the demon could be more ... demonic. Every time he does a flip, he could've been choosing one of two coins at random from a box, only one of which is a fair coin. We can introduce another parameter $s \in [0,1]$ for representing the probability that the fair coin is chosen and $w \in [0, 1]$ represent the bias - probability of landing heads - for the other coin. We have now a two dimensional<span sidenote>but still compact</span> paramter space $(s, w) \in [0, 1]^2$. The hypothesis at each parameter is given by
     $$
       \begin{align*}
         p(H \mid s, w) &= \frac{1}{2}s + w (1 -s) \\
@@ -224,18 +225,94 @@ Though we now have our estimate, there is still a concern that we might have got
 
 The asymptotic normality $\hat{w} \to N(Nw_0, Nw_0 (1 - w_0))$ uses the [normal approximation to binomial distribution](https://en.wikipedia.org/wiki/Binomial_distribution#Normal_approximation).<span sidenote> can be proven by apply the <a href="https://en.wikipedia.org/wiki/Central_limit_theorem">Central Limit Theorem</a> to sums of Bernoulli random variables or directly use a classic result of <a href="https://en.wikipedia.org/wiki/De_Moivre%E2%80%93Laplace_theorem">de Moivre-Laplace</a>.</span>
 
-The array of plots below shows the normal density superimposed on histograms of $\hat{w}$ for different values of $N$ and $w_0$. Observe that the normal approximation works better for large values of $N$ and away from pathological values of $w_0 = 0, 1$. 
+The array of plots below shows the normal density superimposed on histograms of $\hat{w}$ for different values of $N$ and $w_0$. Observe that the normal approximation works better for large values of $N$ and away from pathological values of $w_0 = 0, 1$. The closer the true parameter $w_0$ is to the boundary, the large the data set needs to be for the normal distribution to correctly approximate the density away from the mean<span sidenote>Imagine $w_0$ being close to the boundary, then when $N$ is small the variance $w_0(1 - w_0) / N$ is large, which makes a large portion of the normal density extends in to the "imppossible" region $ \hat{w} \not\in [0, 1]$. </span>.
 
 ![Normal approximation to binomial distribution](/2022-01-13/normal_approx_to_binom.png)
 
 
 # A Broader Theory of MLE and Fisher Information
+Having been forced by the demon to go through these exercises in statistical inference we noticed a few things about MLE for model 1: 
+  - The maximum likelihood parameter exist and is unique, even when it turns out to be at the boundary $\hat{w} = 0, 1$. 
+  - It is an _unbiased estimator_, meaning the expected MLE prediction gives the true paramter (again,assuming _realisability_.)
+  - It is asymptotically normal, meaning as the number of observations $N \to \infty$, the _distribution_ of $\hat{w}$ approaches that of the normal distribution. 
+  - It turns out that the form the of asymptotic normal distribution implies that $\hat{w}$ achieves <span def> asymptotic efficiency </span>, meaning it achieves the lowest variance possible for any unbiased estimator as prescribed by the [Cramer-Rao inequality](https://en.wikipedia.org/wiki/Cram%C3%A9r%E2%80%93Rao_bound).
 
+Before we state the Cramer-Rao bound, we need a few preliminaries. It turns out that the above is actually true for MLE of a large class of models $p(x \mid w)$ modeling some true distribution $q(x)$ satisfying some regularity conditions<span sidenote> which turns out to be far too strong for general statistical learning theory. Hence the need to study "Singular Models". </span>. 
+
+In more general settings, it is unlikely that we will have the luxury of computing the estimator distribution exactly as we did in this simple case. However, taking limits ($N \to \infty$) is always a good way to wash away the details. 
+
+Perhaps the most famous among the tools for washing away details is the Central Limit Theorem
+
+<div class=theorem>
+  (Central Limit Theorem) Given a sequence of i.i.d. random variables $\set{X_1, X_2, \dots}$, each with finite means and variance, $\mu = \E[X_i] < \infty$ and $0 < \sigma^2 = \V[X_i] < \infty$, we can take partial averages $S_n = \frac{1}{n} \sum_{i = 1}^n X_i$. Then, as $n \to \infty$, $S_n$ converges in distribution to $N(\mu, \sigma^2/ \sqrt{n})$, 
+
+    $$
+      \sqrt{n}(S_n - \mu) \overset{d}{\to} N(0, \sigma^2).
+    $$ 
+  
+  meaning the probability density of $\sqrt{n}(S_n - \mu)$ converges pointwise <span sidenote>at points of continuity. see <a href="https://en.wikipedia.org/wiki/Convergence_of_random_variables#Convergence_in_distribution">here</a>.</span> to that of the normal density 
+
+    $$
+      \frac{1}{\sqrt{2 \pi \sigma^2}} e^{-\frac{(x - \mu)^2}{\sigma^2}}.
+    $$
+</div>
+
+So, if somehow our estimators are sums of increasing numerous i.i.d. random variables, we have asymptotic normality. Just like in the case of the coin flip where the number of heads $h$ is given by sums of i.i.d. random variables $\sim Bernoulli(w_0)$. However, we might not have that in general. Furthermore, it would be nice to know that the $\sigma^2$ is the tightest asymptotic spread of our estimator possible. These are actually answered by investigating an important object called the Fisher information. 
+
+<div class=def>
+  For a given statistical model $p(x \mid w)$ with $x \in \R^n$ and $w \in \R^d$, the <span def> Fisher information matrix</span> is given by 
+
+    $$
+      I(w) = \mathrm{CovariantMatrix}(\frac{\partial}{\partial w_j}\log p(x \mid w))
+    $$
+  where the covariance is taken with $p(x \mid w)$ itself as probability distribution. Explicitly in component form, 
+
+    $$
+      I_{jk}(w) = \int \brac{\frac{\partial}{\partial w_j}\log p(x \mid w)}\brac{\frac{\partial}{\partial w_k}\log p(x \mid w)} p(x \mid w) dx.
+    $$
+
+</div>
+
+In the 1D case, this reduces to a scalar function 
+
+$$
+  I(w) = \V_{X \sim p(x \mid w)}(\frac{\partial}{\partial w}\log p(X \mid w)) = \int \brac{\frac{\partial}{\partial w}\log p(x \mid w)}^2 p(x \mid w) dx.
+$$
+
+Computing this quantity for our coin toss model, 
+<iframe src="https://drive.google.com/file/d/16VY8kw-E38-mKctYcx15LoGxMPLYNn6v/preview"></iframe>
+we get 
+$$
+  I(w) = \frac{1}{w(1 - w)}.
+$$
+
+At the true parameter $I(w_0) = (n \sigma^2)^{-1}$ where $\sigma^2 = w_0(1 - w_0) / N$ is the variance of $\hat{w}$ computed before. This is not a coincidence. It is evidence that MLE for our model above is _asymptotically efficient_, because Cramer-Rao bound stated below says that this is the lowest possible variance for _any_ unbiased estimator. 
+
+<div class=theorem>
+  (Cramer-Rao bound) Let $\hat{w}$ is an unbiased estimator for a model $p(x \mid w)$ computed from a set of i.i.d. samples $\set{X_1, \dots X_N}$, $X_i \sim p(x \mid w)$. Let$V_{ij} = \E\sqbrac{(\hat{w}_i - w_i)(\hat{w}_j - w_j)}$ be the covariance matrix and $I_{ij}(w)$ the Fisher information matrix for the model. Then 
+    $$
+      V \geq \brac{N I(w)}^{-1}
+    $$
+  where inequality of matrices is defined as $A \leq B \iff A - B$ is positive semidefinite.  
+</div>
+
+In the 1D case, this translate to 
+$$
+  \V(\hat{w}) \geq \frac{1}{N I(w)}
+$$
+
+for any unbiased estimator $\hat{w}$. Also, notice that the lower bound does not apply when $I(w) = 0$ such as when $w = 0, 1$ in our coin toss model and more generally when $I_{ij}(w)$ is not an invertible matrix. 
+
+<!-- TODO: for example in model 2
+Relationship of I(w) to K(w) -->
 
 
 # Role of Statistical Learning Theory
 The role of statistical learning theory is to clarify the performance of procedures like MLE we used above. 
-
-
+What if it is not realisable? This is a rather common case for modeling complex processes. 
+What if the true parameter is at a singularity of the model? Nearby points are affected as well. 
+What happen when $N$ is small?
+ 
+<!-- 
 # Conclusion
-Performance measure should account for different $q$, model and the algorithm that computes $\hat{p}$. 
+Performance measure should account for different $q$, model and the algorithm that computes $\hat{p}$.  -->

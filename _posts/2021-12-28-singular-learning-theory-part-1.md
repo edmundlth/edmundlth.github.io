@@ -1,7 +1,7 @@
 ---
 title: Singular Learning Theory - Part 1
 tags: [singular-learning-theory, algebraic-geometry, machine-learning]
-categories: [singular-learning-theory-lecture-series]
+categories: [singular-learning-theory, singular-learning-theory-lecture-series]
 description: 
 date: 2021-12-28
 math: true

@@ -82,6 +82,24 @@ details {
     font-size: large;
 }
 
+.theorem {
+    display: block;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+    // margin: 1.5rem;
+    padding: 1rem;
+    border-style: ridge;
+    border-radius: 0.8rem;
+    border-width: 0.1rem;
+    // white-space: pre-wrap;
+}
+
+.theorem:before {
+    content: "Theorem. ";
+    font-weight: bold;
+    font-style: normal;
+    font-size: large;
+}
 // .theorem[text]:before {
 //     content: "Theorem (" attr(text) ") ";
 // }
