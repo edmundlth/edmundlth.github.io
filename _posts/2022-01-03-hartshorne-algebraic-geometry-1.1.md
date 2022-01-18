@@ -12,12 +12,12 @@ image:
 ---
 
 This is a series on studying Algebraic Geometry based on the textbook "Algebraic Geometry" by Hartshorne. We start off with the so called "classical algebraic geometry" where the unifying concept of _schemes_ has yet to be introduced. We will define the geometric objects we shall be studying known as algebraic varieties and associate with them algebraic objects where by geometric properties can be extracted via algebraic means. 
-
+ 
 - [A Little Motivation](#a-little-motivation)
 - [Definition of Affine Varieties](#definition-of-affine-varieties)
 
 # A Little Motivation
-It wasn't until a little while after learning a some geometry and algebra at high school and undergraduate level that it finally hits me: "$x^2 + y^2 = 1$" _is_ the circle<span sidenote> well... with lots mathematical preamble suppressed. But that's what the definitions in this section is for.</span>, not just a mere representation or tool to manipulate the set of points on the circle. Not only that, the way -- the algebraic way -- it is presented lends itself to various obvious generalisations that are "correct"<span sidenote> read: plays well with intuitions and other mathematical theories</span>. For instance, definitions higher dimensional analogs is immediate with "$x_1^2 + x_2^2 + \dots + x_n^2 = 1$" and, with perhaps more historical significant, the study of _conic section_ can be unified under the study of general degree 2 polynomials
+It wasn't until a little while after learning a little geometry and algebra past undergraduate level that it finally hits me: "$x^2 + y^2 = 1$" _is_ the circle<span sidenote> well... with lots mathematical preamble suppressed. But that's what the definitions in this section is for.</span>, not just a mere representation or tool to manipulate the set of points on the circle. Not only that, the way -- the algebraic way -- it is presented lends itself to various obvious generalisations that are "correct"<span sidenote> read: plays well with intuitions and other mathematical theories</span>. For instance, definitions higher dimensional analogs is immediate with "$x_1^2 + x_2^2 + \dots + x_n^2 = 1$" and, with perhaps more historical significant, the study of _conic section_ can be unified under the study of general degree 2 polynomials
 
 $$
 ax^2 + bxy + cy^2 + dx + ey + f = 0.
@@ -33,7 +33,7 @@ Let's fixed a field $k$. Unless otherwise specified, we shall assume that $k$ is
 <div class=def>
 Let $n \in \N$. We shall call the set of all $n$-tuples of elements in the field $k$ the <span def> $n$-dimensional affine space</span> or the <span def> affine $n$-space</span> and denote it as 
 
-$$
+$$  
 \A_k^n := k^n = \set{(a_1, a_2, \dots, a_n) \wh a_i \in k \text{ for all } i}
 $$
 

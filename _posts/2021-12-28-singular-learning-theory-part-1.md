@@ -11,14 +11,24 @@ image:
 #   height: 50
   alt: image not found
 ---
+<div class=epi>
+  <blockquote>
+    “We approached the case, you remember, with an absolutely blank mind, which is always an advantage. We had formed no theories. We were simply there to observe and to draw inferences from our observations.”
+    <cite>
+      Sherlock Holmes, "The Adventure of The Cardboard Box"
+    </cite>
+  </blockquote>
+</div>
 
-This is intended as the first of a series of articles going through core texts for Singular Learning Theory (henceforth SLT) - "Algebraic Geometry and Statistical Learning Theory"[^1] and "Mathematical Theory of Bayesian Statistics"[^2] both written by Sumio Watanabe. This is perhaps mainly my attempt at digesting the text<span sidenote> not for the first time </span> disguised as a series of lectures. 
+<p>
+  This is intended as the first of a series of articles going through core texts for Singular Learning Theory (henceforth SLT) - "Algebraic Geometry and Statistical Learning Theory"[^1] and "Mathematical Theory of Bayesian Statistics"[^2] both written by Sumio Watanabe. This is perhaps mainly my attempt at digesting the text<span sidenote> not for the first time </span> disguised as a series of lectures. 
 
-The target audience I have in mind is anyone familiar with undergraduate level mathematics and is interested in theoretical / mathematical aspect of statistical learning and AI. That being said, the nature of the subject is such that it draws upon tools and concepts from a wide array of mathematical disciplines, spanning algebra to analysis. Some, like probability and statistics, are crucial in the sense that they are the objects of study. Some, like manifold theory, are only required to make sure that the mathematical objects we manipulate are well defined and cover a sufficient generality for the theory to be useful. Others, like algebraic geometry and Schwartz distribution theory, exports crucial theorems that we shall use to prove and understand the central results of SLT. Yet others, like statistical mechanics, are topics where we might find unexpected connections and possible cross-pollination. We shall introduce these topics in their own time when they come up naturally when we explore SLT. Our modest aim regarding these prerequisites is to understand them with sufficient depth to understand the proofs of various results in SLT and to at least understand their significance <span sidenote> like why they are needed and what happen when we can't borrow from them. Of course each of them are profound fields of study in their own right, and if time and energy permit, we shall delve beyond strictly necessary to see the wonder they contain.</span> 
+  The target audience I have in mind is anyone familiar with undergraduate level mathematics and is interested in theoretical / mathematical aspect of statistical learning and AI. That being said, the nature of the subject is such that it draws upon tools and concepts from a wide array of mathematical disciplines, spanning algebra to analysis. Some, like probability and statistics, are crucial in the sense that they are the objects of study. Some, like manifold theory, are only required to make sure that the mathematical objects we manipulate are well defined and cover a sufficient generality for the theory to be useful. Others, like algebraic geometry and Schwartz distribution theory, exports crucial theorems that we shall use to prove and understand the central results of SLT. Yet others, like statistical mechanics, are topics where we might find unexpected connections and possible cross-pollination. We shall introduce these topics in their own time when they come up naturally when we explore SLT. Our modest aim regarding these prerequisites is to understand them with sufficient depth to understand the proofs of various results in SLT and to at least understand their significance <span sidenote> like why they are needed and what happen when we can't borrow from them. Of course each of them are profound fields of study in their own right, and if time and energy permit, we shall delve beyond strictly necessary to see the wonder they contain.</span> 
+</p>
 
 - [What do we aspire to study?](#what-do-we-aspire-to-study)
 - [Statistical Background](#statistical-background)
-  - [The task of learning](#the-task-of-learning)
+  - [The Task of Learning](#the-task-of-learning)
   - [Model-Truth-Prior](#model-truth-prior)
   - [Some Important Statistical Estimation Methods](#some-important-statistical-estimation-methods)
   - [Kullback-Leibler Divergence](#kullback-leibler-divergence)
@@ -52,7 +62,7 @@ Before making definitions and carving out our domain, let's list a few informal 
 
 # Statistical Background
 
-## The task of learning
+## The Task of Learning
 Let's come back down to earth with some definitions. 
 In typical statistical learning scenario, we are given a set of examples coming from a data generating process. 
 
@@ -288,7 +298,9 @@ Next come the problem of how to measure the success or failure of our approximat
   </p>
 </details>
 
-I find it helpful to understand a little about [Shanon's information entropy](https://en.wikipedia.org/wiki/Entropy_(information_theory))<span sidenote>and we shall need the concept of information entropy in our study anyway.</span> in order to get an intutitive sense of KL-divergence. Informally, Shanon's information quantifies how surprised one should be when an event that was thought to have probability $p \in [0, 1]$ occurs. Intuitively, the observation "the sun rose in the east this morning" has less information content than "it was raining this morning in Perth" or "the Dow Jones index rose by 3% this morning"<span sidenote>think about which "insider knowledge" - knowledge that dispels prior uncertainty by increasing the event probability to 1 - will you pay more to obtain to give an edge in a bet.</span>. A little more formally, Shanon information is another way of encoding probability with the following properties
+I find it helpful to understand a little about [Shanon's information entropy](https://en.wikipedia.org/wiki/Entropy_(information_theory))<span sidenote>and we shall need the concept of information entropy in our study anyway.</span> in order to get an intutitive sense of KL-divergence. Informally, Shanon's information quantifies how surprised one should be when an event that was thought to have probability $p \in [0, 1]$ occurs. Intuitively, the observation "the sun rose in the east this morning" has less information content than "it was raining this morning in Perth" or "the Dow Jones index rose by 3% this morning". Think about which "insider knowledge" - knowledge that dispels prior uncertainty by increasing the event probability to 1 - will you pay more to obtain to give an edge in a bet. Stated another way, the information content quantifies ignorance about an event prior to observation. 
+
+A little more formally, Shanon information is another way of encoding probability with the following properties
  - Information content is a monotonically decreasing non-negative function $I: [0, 1] \to \R_{\geq 0}$ of the probability $p$ of the event.
  - Events with complete certainty have zero information. 
  - Information of independent events adds. 
@@ -298,7 +310,25 @@ $$
  I(p) = -\log p.
 $$
 
+If we have a set of events following a probability distribution<span sidenote>more precisely, a sigma algebra of events with a probability measure, i.e. a probability space</span>, we can quantify the _expected_ amount of information, or the expected amount of surprise if we were to observe a large amount events drawn from the distribution. See Shanon's original 1948 paper[^2] that started off information theory for formal derivation and discussion. 
 
+<div class=def>
+  <p>
+    The <span def>Shanon entropy</span> of a random variable $X$ taking on finite number of values ${x_1, \dots, x_n}$ each with probability $p_i = p(X = x_i)$ is given by the following expectation expression<span sidenote>we use the letter $S$ for entropy here, consistent with statistical physics. However, Shanon originally uses the letter $H$ for this quantity, named after Boltzmann's <a href="https://en.wikipedia.org/wiki/H-theorem">H-theorem</a> for thermodynamics.</span>
+    $$
+    S(p) = \E_p[-\log p(X)] = -\sum_{x \in X} p(x) \log p(x) 
+    $$ 
+  </p>
+
+  <p>
+    For continuous distribution $p(x)$, we replace the sum with integral 
+    $$
+    S(p) = \int p(x) \log p(x) dx.
+    $$
+  </p>
+</div>
+
+Observe that even though low probability events has high information content $-\log p(x)$, they occur with less frequency $p(x)$. This push and pull, together with the fact that probability sum to unity, means that the distribution with the highest entropy is the uniform distribution<span sidenote>if there is no other constraints and if a uniform distribution can be defined on the space. </span>
 
 ## Theory of Statistical Learning
 $$

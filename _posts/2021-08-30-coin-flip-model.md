@@ -11,9 +11,6 @@ image:
 #   height: 50
   alt: image not found
 ---
-
-# Introduction
-
 Following a long tradition of first example in statistical pedagogy, we
 will investigate coin flips: a single Bernoulli random variable $\{H, T\} \ni x \sim Bernoulli(w)$ parametrised by a single variable $w \in [0, 1] = W \subset \R$. In this case, we have 
 
