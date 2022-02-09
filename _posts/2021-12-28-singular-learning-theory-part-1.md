@@ -21,7 +21,7 @@ image:
 </div>
 
 <p>
-  This is intended as the first of a series of articles going through core texts for Singular Learning Theory (henceforth SLT) - "Algebraic Geometry and Statistical Learning Theory"[^1] and "Mathematical Theory of Bayesian Statistics"[^2] both written by Sumio Watanabe. This is perhaps mainly my attempt at digesting the text<span sidenote> not for the first time </span> disguised as a series of lectures. 
+  This is intended as the first of a series of articles going through core texts for Singular Learning Theory (henceforth SLT) - "Algebraic Geometry and Statistical Learning Theory"(<a href="#ref-1">Watanabe, 2009</a>) and "Mathematical Theory of Bayesian Statistics" (<a href="#ref-2">Watanabe 2018</a>) both written by Sumio Watanabe. This is perhaps mainly my attempt at digesting the text<span sidenote> not for the first time </span> disguised as a series of lectures. 
 
   The target audience I have in mind is anyone familiar with undergraduate level mathematics and is interested in theoretical / mathematical aspect of statistical learning and AI. That being said, the nature of the subject is such that it draws upon tools and concepts from a wide array of mathematical disciplines, spanning algebra to analysis. Some, like probability and statistics, are crucial in the sense that they are the objects of study. Some, like manifold theory, are only required to make sure that the mathematical objects we manipulate are well defined and cover a sufficient generality for the theory to be useful. Others, like algebraic geometry and Schwartz distribution theory, exports crucial theorems that we shall use to prove and understand the central results of SLT. Yet others, like statistical mechanics, are topics where we might find unexpected connections and possible cross-pollination. We shall introduce these topics in their own time when they come up naturally when we explore SLT. Our modest aim regarding these prerequisites is to understand them with sufficient depth to understand the proofs of various results in SLT and to at least understand their significance <span sidenote> like why they are needed and what happen when we can't borrow from them. Of course each of them are profound fields of study in their own right, and if time and energy permit, we shall delve beyond strictly necessary to see the wonder they contain.</span> 
 </p>
@@ -36,6 +36,7 @@ image:
   - [Fisher Information Matrix](#fisher-information-matrix)
 - [Singular Models](#singular-models)
 - [Model Selection](#model-selection)
+- [MISC](#misc)
 - [References](#references)
 
 # What do we aspire to study?
@@ -310,7 +311,7 @@ $$
  I(p) = -\log p.
 $$
 
-If we have a set of events following a probability distribution<span sidenote>more precisely, a sigma algebra of events with a probability measure, i.e. a probability space</span>, we can quantify the _expected_ amount of information, or the expected amount of surprise if we were to observe a large amount events drawn from the distribution. See Shanon's original 1948 paper[^2] that started off information theory for formal derivation and discussion. 
+If we have a set of events following a probability distribution<span sidenote>more precisely, a sigma algebra of events with a probability measure, i.e. a probability space</span>, we can quantify the _expected_ amount of information, or the expected amount of surprise if we were to observe a large amount events drawn from the distribution. See Shanon's original 1948 paper (<a href="#ref-3">Shanon, 1948</a>) that started off information theory for formal derivation and discussion. 
 
 <div class=def>
   <p>
@@ -349,12 +350,15 @@ Various equivalent definitions of singular models (via FIM and K(w)). Some impli
 
 
 
+# MISC
+Seminar blackboard draft
+<iframe src="https://drive.google.com/file/d/1To8ZrCwueWvBIL1rwQXPquBosMhhVe92/preview"></iframe>
 
 
 
 # References
-[^1]: Sumio Watanabe. _Algebraic Geometry and Statistical Learning Theory_. Cambridge University Press, August 2009.
+<p id="ref-1"> Sumio Watanabe. 2009. "Algebraic Geometry and Statistical Learning Theory." Cambridge University Press.</p>
 
-[^2]: Sumio Watanabe. _Mathematical Theory of Bayesian Statistics_. CRC Press, Chapman and Hall/CRC. 2018. 
+<p id="ref-2"> Sumio Watanabe. 2018, "Mathematical Theory of Bayesian Statistics." CRC Press, Chapman and Hall/CRC. </p> 
 
-[^3]: Shannon, C. E. 1948. “A Mathematical Theory of Communication.” The Bell System Technical Journal 27 (3): 379–423.
+<p id="ref-3"> Shannon, C. E. 1948. “A Mathematical Theory of Communication.” The Bell System Technical Journal 27 (3): 379–423.</p>

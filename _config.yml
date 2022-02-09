@@ -79,7 +79,7 @@ theme_mode:  dark # [light|dark]
 img_cdn: 'https://d3awt3adt4koyi.cloudfront.net/images'
 
 # the avatar on sidebar, support local or CORS resources
-avatar: assets/avatar.png
+avatar: /avatar.jpg
 
 # boolean type, the global switch for ToC in posts.
 toc: false
