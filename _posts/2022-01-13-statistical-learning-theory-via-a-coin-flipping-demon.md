@@ -368,4 +368,4 @@ Performance measure should account for different $q$, model and the algorithm th
 -->
 
 
-[^1]: Lehmann, E. L., and Joseph P. Romano. 2005. Testing Statistical Hypotheses. Springer, New York, NY. 
+<p id="ref-1"> Lehmann, E. L., and Joseph P. Romano. 2005. Testing Statistical Hypotheses. Springer, New York, NY. </p>
