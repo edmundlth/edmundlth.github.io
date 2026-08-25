@@ -1,29 +1,37 @@
-name: 'Automatic build'
+name: 'Publish holding site'
+
 on:
   push:
     branches:
       - main
-    paths-ignore:
-      - .gitignore
-      - README.md
-      - LICENSE
+    paths:
+      - index.html
+      - .github/workflows/pages-deploy.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
-  continuous-delivery:
-
+  publish:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0  # for posts's lastmod
+          fetch-depth: 0
 
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: 2.7
-          bundler-cache: true
-
-      - name: Deploy
-        run: bash tools/deploy.sh
+      - name: Publish holding page
+        shell: bash
+        run: |
+          set -euo pipefail
+          cp index.html /tmp/holding-index.html
+          git checkout --orphan holding-publish
+          git rm -rf .
+          cp /tmp/holding-index.html index.html
+          touch .nojekyll
+          git add index.html .nojekyll
+          git config user.name "GitHub Actions"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Publish temporary holding site"
+          git push --force origin HEAD:gh-pages
