@@ -1,12 +1,6 @@
 name: 'Publish holding site'
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - index.html
-      - .github/workflows/pages-deploy.yml
   workflow_dispatch:
 
 permissions:
